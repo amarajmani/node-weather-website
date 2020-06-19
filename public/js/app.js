@@ -1,4 +1,4 @@
-console.log('Client side js file')
+//console.log('Client side js file')
 
 //Select element from HTML document
 const weatherForm = document.querySelector('form')
