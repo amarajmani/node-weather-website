@@ -5,6 +5,7 @@ const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
 const app = express() // basic code to use express
+const port = process.env.PORT || 3000// to get port from Heroku at which project will run 
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -69,19 +70,6 @@ app.get('/weather', (req, res) => {
     })
 })
 
-app.get('/products', (req, res) => {
-    if(!req.query.search) {
-        return res.send({
-            error: 'Please provide a search term.'
-        })
-    }
-
-    console.log(req.query.search)
-    res.send({ // to send res by any page
-        products: []
-    })
-})
-
 app.get('/help/*', (req, res) =>{
     res.render('error', {
         title: '404',
@@ -98,6 +86,6 @@ app.get('*', (req, res) =>{
     })
 })
 
-app.listen(3000, () => { // to start a server
-    console.log('Server is up and running')
+app.listen(port, () => { // to start a server
+    console.log('Server is up and running on port: ' + port)
 })
